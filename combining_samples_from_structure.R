@@ -8,4 +8,16 @@ combining_samples_from_structure <- function(working_dir,structure_file,sample1,
 
 library(tidyverse)
 setwd(working_dir)
-orig_structure <- as.tibble(t(read.table(file,header=FALSE)))
+orig_structure <- t(read.table(file,header=FALSE)
+structure_names <- orig_structure[1,]
+unique_names <- NULL  
+for (i in 1:length(structure_names)) {
+  if(structure_names[i] %in% unique_names) {
+    structure_names[i] <- paste(structure_names[i],"_1",sep="")
+  } else {
+    unique_names <- c(unique_names,structure_names[i])
+  }
+}  
+                    
+mod_structure <- as.tibble(orig_structure[-1,])
+names(mod_structure) <- structure_names
