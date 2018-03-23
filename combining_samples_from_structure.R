@@ -51,7 +51,12 @@ todelete <- c(todelete,(todelete-1))
 mod_structure <- mod_structure[,-todelete]
 structure_names <- structure_names[-todelete]
 structure_names <- c(structure_names,newname,newname_1)
-  
+for (i in seq(2,length(structure_names),2)) {
+  temp <- unlist(strsplit(structure_names[i],"_"))
+  temp <- temp[1:(length(temp)-1)]
+  structure_names[i] <- paste(temp,collapse="_")
+}
+    
 mod_structure <- rbind(structure_names,mod_structure)  
 mod_structure <- t(mod_structure)
   
