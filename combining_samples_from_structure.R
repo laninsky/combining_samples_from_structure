@@ -21,3 +21,15 @@ for (i in 1:length(structure_names)) {
                     
 mod_structure <- as.tibble(orig_structure[-1,])
 names(mod_structure) <- structure_names
+          
+which(names(mod_structure) %in% c(sample1,sample2))                    
+                    
+                    
+                    
+                    
+new_allele <- matrix(NA,ncol=1,nrow=dim(mod_structure)[2])                    
+new_allele                    
+                    
+                    
+                    
+newname <- paste(sample1,sample2,sep="_")
