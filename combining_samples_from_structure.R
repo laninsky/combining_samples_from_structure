@@ -1,8 +1,8 @@
 
-working_dir <- "/Users/alanalexander"
-file <- "lamprey.ustr"
-firstsample <- "3.4"
-secondsample <- "3.6"
+#working_dir <- "/Users/alanalexander"
+#file <- "lamprey.ustr"
+#firstsample <- "3.4"
+#secondsample <- "3.6"
 
 combining_samples_from_structure <- function(working_dir,structure_file,firstsample,secondsample) {
 
