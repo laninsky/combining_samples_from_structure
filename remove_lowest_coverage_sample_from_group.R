@@ -1,8 +1,8 @@
-working_dir <- "/Users/alanaalexander/Dropbox/lamprey"
-structure_file <- "new_structure.stru"
-sample1 <- "3.Lpry"
-sample2 <- "13.Lpry"
-missing <- "-9"
+#working_dir <- "/Users/alanaalexander/Dropbox/lamprey"
+#structure_file <- "new_structure.stru"
+#sample1 <- "3.Lpry"
+#sample2 <- "13.Lpry"
+#missing <- "-9"
 
 remove_lowest_coverage_sample_from_group <- function(working_dir,structure_file,missing,sample1,sample2) {
 
