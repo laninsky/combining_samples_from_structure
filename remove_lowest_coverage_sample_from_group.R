@@ -14,7 +14,7 @@ orig_structure <- readLines(structure_file)
 
 # Transposing first row of data and converting it to tibble  
 transposed_structure <- matrix(unlist(strsplit(orig_structure[1],"\\s")),ncol=1)
-transposed_structurename <- gsub(" ","",transposed_structure[1])
+transposed_structurename <- transposed_structure[1]
 transposed_structure <- tibble(transposed_structure[-1])
 names(transposed_structure) <- transposed_structurename
 
@@ -26,10 +26,10 @@ print("Now transposing data")
 for (i in 2:length(orig_structure)) {
   temprow <- matrix(unlist(strsplit(orig_structure[i],"\\s")),ncol=1)
   # Grabbing sample name
-  temprowname <- gsub(" ","",temprow[1])
+  temprowname <- temprow[1]
   # If first allele is already present in the dataset, renaming to "_A", and calling this current second allele "_B"
   if (temprowname %in% names(transposed_structure)) {
-    names(transposed_structure) <- paste(temprowname,"_A",sep="")
+    names(transposed_structure)[which(names(transposed_structure)==temprowname)] <- paste(temprowname,"_A",sep="")
     temprowname <- paste(temprowname,"_B",sep="")
   }
   # Grabbing data (and not name)
