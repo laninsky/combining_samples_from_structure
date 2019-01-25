@@ -16,7 +16,6 @@ orig_structure <- readLines(structure_file)
 transposed_structure <- matrix(unlist(strsplit(orig_structure[1],"\\s")),ncol=1)
 transposed_structurename <- gsub(" ","",transposed_structure[1])
 transposed_structure <- tibble(transposed_structure[-1])
-transposed_structure <- transposed_structure[-(which(transposed_structure=="")),1]
 names(transposed_structure) <- transposed_structurename
 
 # Printing out some characteristics of the data so people will know where we are up to  
@@ -30,13 +29,12 @@ for (i in 2:length(orig_structure)) {
   temprowname <- gsub(" ","",temprow[1])
   # If first allele is already present in the dataset, renaming to "_A", and calling this current second allele "_B"
   if (temprowname %in% names(transposed_structure)) {
-    names(transposed_structure)[which(names(transposed_structure)==temprowname)] <- paste(temprowname,"_A",sep="")
+    names(transposed_structure) <- paste(temprowname,"_A",sep="")
     temprowname <- paste(temprowname,"_B",sep="")
   }
   # Grabbing data (and not name)
   temprow <- tibble(temprow[-1])
-  # Removing any empty rows
-  temprow <- temprow[-(which(temprow=="")),1]
+  # Grabbing name
   names(temprow) <- temprowname
   # Binding this allele to the rest of the data
   transposed_structure <- bind_cols(transposed_structure,temprow)
@@ -86,6 +84,7 @@ for (i in 1:dim(relatedness)[1]) {
 print(paste((dim(removed_samples)[1]-1), " samples have been removed and are listed in removed_samples.txt"))
 write.table(removed_samples,"removed_samples.txt",col.names=FALSE,row.names=FALSE,quote=FALSE)
 print("The modified structure file has been written out to pruned_structure.stru")
+transposed_structure <- t(transposed_structure)  
 write.table(t(transposed_structure),"pruned_structure.stru",quote=FALSE,row.names=TRUE,col.names=FALSE)
 
 }
