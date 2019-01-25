@@ -86,6 +86,6 @@ for (i in 1:dim(relatedness)[1]) {
 print(paste((dim(removed_samples)[1]-1), " samples have been removed and are listed in removed_samples.txt"))
 write.table(removed_samples,"removed_samples.txt",col.names=FALSE,row.names=FALSE,quote=FALSE)
 print("The modified structure file has been written out to pruned_structure.stru")
-transposed_structure <- write.table(t(transposed_structure),"pruned_structure.stru",quote=FALSE,row.names=TRUE,col.names=FALSE)
+write.table(t(transposed_structure),"pruned_structure.stru",quote=FALSE,row.names=TRUE,col.names=FALSE)
 
 }
