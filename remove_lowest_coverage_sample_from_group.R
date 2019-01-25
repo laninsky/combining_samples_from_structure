@@ -54,11 +54,11 @@ for (i in 1:dim(relatedness)[1]) {
   
   if (missing1Aname %in% names(transposed_structure) & missing2Aname %in% names(transposed_structure)) {
     missing1count <- as.numeric(as.matrix(transposed_structure %>% 
-      select(missing1Aname,missing1Bname) %>% 
-      filter(.[[1]]==missing | .[[2]]==missing) %>% count())[1,1])
+                                            select(missing1Aname,missing1Bname) %>% 
+                                            filter(.[[1]]==missing | .[[2]]==missing) %>% count())[1,1])
     missing2count <- as.numeric(as.matrix(transposed_structure %>% 
-      select(missing2Aname,missing2Bname) %>% 
-      filter(.[[1]]==missing | .[[2]]==missing) %>% count())[1,1])
+                                            select(missing2Aname,missing2Bname) %>% 
+                                            filter(.[[1]]==missing | .[[2]]==missing) %>% count())[1,1])
     if (missing1count >= missing2count) {
       transposed_structure <- transposed_structure %>% select(-c(missing1Aname,missing1Bname))
       print(paste(relatedness[i,1]," has been removed from dataset. ",relatedness[i,2]," has been retained",sep=""))
@@ -69,7 +69,7 @@ for (i in 1:dim(relatedness)[1]) {
       removed_samples <- rbind(removed_samples,as.matrix(relatedness[i,2]))
     }
   } else {
-    if (!(missing1Aname %in% names(transposed_structure) & missing2Aname %in% names(transposed_structure))) {
+    if ((!(missing1Aname %in% names(transposed_structure))) & (!(missing2Aname %in% names(transposed_structure)))) {
       print(paste("Both ",relatedness[i,1], " and ",relatedness[i,2], " have already been removed from the dataset",sep=""))
     } else {
       if (missing1Aname %in% names(transposed_structure)) {
