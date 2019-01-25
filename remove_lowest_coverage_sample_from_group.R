@@ -13,7 +13,7 @@ setwd(working_dir)
 orig_structure <- readLines(structure_file)
 
 # Transposing first row of data and converting it to tibble  
-transposed_structure <- matrix(unlist(strsplit(orig_structure[1],"\t")),ncol=1)
+transposed_structure <- matrix(unlist(strsplit(orig_structure[1],"\\s")),ncol=1)
 transposed_structurename <- gsub(" ","",transposed_structure[1])
 transposed_structure <- tibble(transposed_structure[-1])
 transposed_structure <- transposed_structure[-(which(transposed_structure=="")),1]
