@@ -81,10 +81,11 @@ for (i in 1:dim(relatedness)[1]) {
   }
 }
 
-print(paste((dim(removed_samples)[1]-1), " samples have been removed and are listed in removed_samples.txt"))
+print(paste((dim(removed_samples)[1]-1), " samples have been removed and are listed in removed_samples.txt",sep=""))
 write.table(removed_samples,"removed_samples.txt",col.names=FALSE,row.names=FALSE,quote=FALSE)
 print("The modified structure file has been written out to pruned_structure.stru")
-transposed_structure <- t(transposed_structure)  
-write.table(t(transposed_structure),"pruned_structure.stru",quote=FALSE,row.names=TRUE,col.names=FALSE)
+transposed_structure <- t(transposed_structure)
+row.names(transposed_structure) <- gsub(pattern="_A$|_B$",replacement="",row.names(transposed_structure))
+write.table(transposed_structure,"pruned_structure.stru",quote=FALSE,row.names=TRUE,col.names=FALSE)
 
 }
