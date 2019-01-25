@@ -87,7 +87,7 @@ print("The modified structure file has been written out to pruned_structure.stru
 
 formernoloci <- dim(transposed_structure)[1]
 # Filtering rows that now only have missing data  
-transposed_structure <- transposed_structure %>%  filter(rowSums(.!=missing)==ncol(transposed_structure))
+transposed_structure <- transposed_structure %>%  filter(!(rowSums(.==missing)==ncol(transposed_structure)))
 newnoloci <- dim(transposed_structure)[1]
 print(paste((formernoloci-newnoloci), " loci have been removed as they now comprise only missing data",sep=""))
 
