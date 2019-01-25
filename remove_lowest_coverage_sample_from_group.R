@@ -25,7 +25,7 @@ print("Now transposing data")
 
 # Transposing second row and onwards  
 for (i in 2:length(orig_structure)) {
-  temprow <- matrix(unlist(strsplit(orig_structure[i],"\t")),ncol=1)
+  temprow <- matrix(unlist(strsplit(orig_structure[i],"\\s")),ncol=1)
   # Grabbing sample name
   temprowname <- gsub(" ","",temprow[1])
   # If first allele is already present in the dataset, renaming to "_A", and calling this current second allele "_B"
